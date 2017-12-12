@@ -11,12 +11,16 @@ public class CustomClassLoader extends ClassLoader {
         String currentPackageName = getClass().getPackage().getName();
 
         Class<?> c;
-
+        // если имя класса содержит текущий пакет, загрузим этот класс
         if (canonicalClassName.contains(currentPackageName)) {
-            byte[] bt = loadClassData(canonicalClassName);
-            c = defineClass(canonicalClassName, bt, 0, bt.length);
-            if (resolve) resolveClass(c);
-
+            try {
+                byte[] bt = loadClassData(canonicalClassName);
+                c = defineClass(canonicalClassName, bt, 0, bt.length);  // превратим байты в реальный объект класса
+                if (resolve) resolveClass(c);
+            } catch (IOException e) {
+                throw new ClassNotFoundException("Failed to load file", e);
+            }
+        // иначе передадим своему родителю
         } else {
             ClassLoader parent = getParent();
             if (parent != null) {
@@ -30,20 +34,20 @@ public class CustomClassLoader extends ClassLoader {
         return c;
     }
 
-    private byte[] loadClassData(String canonicalClassName) {
-        InputStream is = getResourceAsStream(canonicalClassName.replace(".", "/") + ".class");
+    private byte[] loadClassData(String canonicalClassName) throws IOException {
+        // откроем файл и вернем его как byte array
+        try (InputStream is = getResourceAsStream(canonicalClassName.replace(".", "/") + ".class")) {
+            ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
 
-        ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
-
-        int len;
-        try {
-            while((len=is.read()) != -1) {
-                byteSt.write(len);
+            int len;
+            try {
+                while((len=is.read()) != -1) {
+                    byteSt.write(len);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+            return byteSt.toByteArray();
         }
-
-        return byteSt.toByteArray();
     }
 }
