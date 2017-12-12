@@ -5,14 +5,23 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CustomClassLoader extends ClassLoader {
+
     @Override
-    public Class<?> findClass(String name) {
-        byte[] bt = loadClassData(name);
-        return defineClass(name, bt, 0, bt.length);
+    public Class<?> findClass(String canonicalClassName) throws ClassNotFoundException {
+        String currentPackageName = getClass().getPackage().getName();
+
+        byte[] bt = loadClassData(canonicalClassName);
+
+        if (canonicalClassName.contains(currentPackageName)) {
+            return defineClass(canonicalClassName, bt, 0, bt.length);
+        }
+        else {
+            return super.defineClass(canonicalClassName, bt, 0, bt.length);
+        }
     }
 
     private byte[] loadClassData(String className) {
-        InputStream is = getClass().getClassLoader().getResourceAsStream(className.replace(".", "/")+".class");
+        InputStream is = getClass().getClassLoader().getResourceAsStream(className.replace(".", "/") + ".class");
 
         ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
 

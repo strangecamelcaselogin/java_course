@@ -5,14 +5,13 @@ import java.lang.reflect.Method;
 
 public class App {
     public static void main(String[] args) throws InstantiationException, IllegalAccessException,
-            NoSuchMethodException, InvocationTargetException {
+            NoSuchMethodException, InvocationTargetException, ClassNotFoundException {
 
-        String packageName = "ru.rsatu";
-        String className = "Target";
+        String className = "ru.rsatu.Target";
         String methodName = "getMessage";
 
         CustomClassLoader customLoader = new CustomClassLoader();
-        Class <?> loadedClass = customLoader.findClass(packageName + "." + className);
+        Class <?> loadedClass = customLoader.findClass(className);
 
         Method m = loadedClass.getMethod(methodName);
 
