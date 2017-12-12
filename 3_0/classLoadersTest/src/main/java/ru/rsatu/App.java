@@ -11,7 +11,7 @@ public class App {
         String methodName = "getMessage";
 
         CustomClassLoader customLoader = new CustomClassLoader();
-        Class <?> loadedClass = customLoader.findClass(className);
+        Class <?> loadedClass = customLoader.loadClass(className, false);
 
         Method m = loadedClass.getMethod(methodName);
 

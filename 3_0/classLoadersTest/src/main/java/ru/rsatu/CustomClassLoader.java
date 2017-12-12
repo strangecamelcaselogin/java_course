@@ -7,21 +7,31 @@ import java.io.InputStream;
 public class CustomClassLoader extends ClassLoader {
 
     @Override
-    public Class<?> findClass(String canonicalClassName) throws ClassNotFoundException {
+    public Class<?> loadClass(String canonicalClassName, boolean resolve) throws ClassNotFoundException {
         String currentPackageName = getClass().getPackage().getName();
 
-        byte[] bt = loadClassData(canonicalClassName);
+        Class<?> c;
 
         if (canonicalClassName.contains(currentPackageName)) {
-            return defineClass(canonicalClassName, bt, 0, bt.length);
+            byte[] bt = loadClassData(canonicalClassName);
+            c = defineClass(canonicalClassName, bt, 0, bt.length);
+            if (resolve) resolveClass(c);
+
+        } else {
+            ClassLoader parent = getParent();
+            if (parent != null) {
+                c = parent.loadClass(canonicalClassName);
+
+            } else {
+                throw new ClassNotFoundException("ClassLoader has no parent");
+            }
         }
-        else {
-            return super.defineClass(canonicalClassName, bt, 0, bt.length);
-        }
+
+        return c;
     }
 
-    private byte[] loadClassData(String className) {
-        InputStream is = getClass().getClassLoader().getResourceAsStream(className.replace(".", "/") + ".class");
+    private byte[] loadClassData(String canonicalClassName) {
+        InputStream is = getResourceAsStream(canonicalClassName.replace(".", "/") + ".class");
 
         ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
 
@@ -36,5 +46,4 @@ public class CustomClassLoader extends ClassLoader {
 
         return byteSt.toByteArray();
     }
-
 }
