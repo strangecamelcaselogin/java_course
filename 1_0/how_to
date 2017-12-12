@@ -1,0 +1,12 @@
+# компиляция:
+/ $ javac ./ru/rsatu/HelloWorld.java
+
+# запуск .class
+/ $ java ru.rsatu.HelloWorld
+
+# сделать jar:
+/ $ jar cmvf ./ru/rsatu/manifest.mf helloWorld.jar ./ru/rsatu/HelloWorld.class
+/ $ jar cmvf ./ru/rsatu/supplier/manifest.mf helloWorldSupplier.jar ./ru/rsatu/supplier/HelloWorldSupplier.class
+
+# запуск .jar:
+/ $ java -jar ./helloWorld.jar
