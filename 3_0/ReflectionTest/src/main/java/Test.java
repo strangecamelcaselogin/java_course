@@ -1,4 +1,4 @@
-public class Test {
+public class Test implements TestInterface{
     static String b = "hello";
 
     static {
@@ -13,7 +13,7 @@ public class Test {
         this.f = 111;
     }
 
-    static void foo() {}
+    public void foo() {}
     public int bar() {
         return 41;
     }
