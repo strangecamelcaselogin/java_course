@@ -1,11 +1,15 @@
 package ru.rsatu.core;
 
-public class UselessFactory {
-    public static TestInterface getTest() {
+import java.lang.reflect.Proxy;
 
-        // todo more implements on TestInterface
-        // todo use Log annotation
-        return new Test();
+public class UselessFactory {
+    public static TestInterface getTest() throws ClassNotFoundException{
+
+        // Создадим прокси объект и вернем его
+        return (TestInterface) Proxy.newProxyInstance(
+                Test.class.getClassLoader(),
+                Test.class.getInterfaces(),
+                new LogInvocation(new Test(), Log.class));
     }
 
 }
