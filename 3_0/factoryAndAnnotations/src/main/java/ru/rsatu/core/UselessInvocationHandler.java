@@ -6,14 +6,15 @@ import java.lang.reflect.Method;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ru.rsatu.core.customAnnotations.AnnotationHandler;
-import ru.rsatu.core.customAnnotations.MetaAnnotation;
+import ru.rsatu.core.annotations.AnnotationHandler;
+import ru.rsatu.core.annotations.MetaAnnotation;
 
 public class UselessInvocationHandler implements InvocationHandler{
     private Object originalObject;
+    // Мета аннотация, которая является критерием исполнения наших хендлеров для методов
     private Class<MetaAnnotation> metaAnnotation = MetaAnnotation.class;
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();  // объект логгера
 
     public UselessInvocationHandler(Object originalObject) {
         this.originalObject = originalObject;  // сохраним оригинальный объект
@@ -41,6 +42,6 @@ public class UselessInvocationHandler implements InvocationHandler{
             }
         }
 
-        return method.invoke(this.originalObject, args);
+        return method.invoke(this.originalObject, args);  // наконец вызовем и сам метод
     }
 }

@@ -1,25 +1,20 @@
 package ru.rsatu.core;
 
-// import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-
 public class UselessFactory {
-    public static TestInterface getTest() throws ClassNotFoundException{
-        Test test = new Test();
+    public static TestInterface getTest(String testType) throws ClassNotFoundException{
 
-//        boolean isNeedToProxy = true;
-//        for (Method m: test.getClass().getMethods()) {
-//            if (m.isAnnotationPresent(Log.class)) {
-//                isNeedToProxy = true;
-//                break;
-//            }
-//        }
+        TestInterface test;
+        if (testType.equals("better")) {
+            test = new BetterTest();
+        } else if (testType.equals("simple")) {
+            test = new SimpleTest();
+        } else {
+            throw new IllegalArgumentException("testType argument must be 'simple' or 'better'");
+        }
 
-        // Создадим прокси объект и вернем его
-        return (TestInterface) Proxy.newProxyInstance(
-                test.getClass().getClassLoader(),
-                test.getClass().getInterfaces(),
-                new UselessInvocationHandler(test));
+        // Создадим прокси объект, приведем его к интерфейсу и вернем
+        // делаем это враппером согласно "принципу единственной ответственности"
+        return (TestInterface) UselessWrapper.wrap(test);
     }
 
 }

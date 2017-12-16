@@ -1,4 +1,4 @@
-package ru.rsatu.core.customAnnotations;
+package ru.rsatu.core.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
