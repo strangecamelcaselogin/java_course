@@ -11,12 +11,14 @@ public class CustomClassLoader extends ClassLoader {
         String currentPackageName = getClass().getPackage().getName();
 
         Class<?> c;
-        // если имя класса содержит текущий пакет, загрузим этот класс
-        if (canonicalClassName.contains(currentPackageName)) {
+
+        // если имя класса содержит текущий пакет и не содержит Interface, загрузим этот класс
+        if (canonicalClassName.contains(currentPackageName) && !canonicalClassName.contains("Interface")) {
             try {
                 byte[] bt = loadClassData(canonicalClassName);
                 c = defineClass(canonicalClassName, bt, 0, bt.length);  // превратим байты в реальный объект класса
                 if (resolve) resolveClass(c);
+
             } catch (IOException e) {
                 throw new ClassNotFoundException("Failed to load file", e);
             }
@@ -40,13 +42,10 @@ public class CustomClassLoader extends ClassLoader {
             ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
 
             int len;
-            try {
-                while((len=is.read()) != -1) {
-                    byteSt.write(len);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            while((len=is.read()) != -1) {
+                byteSt.write(len);
             }
+
             return byteSt.toByteArray();
         }
     }
