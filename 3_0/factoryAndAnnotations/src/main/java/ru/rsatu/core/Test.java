@@ -1,5 +1,7 @@
 package ru.rsatu.core;
 
+import ru.rsatu.core.customAnnotations.Log;
+
 public class Test implements TestInterface {
     @Log()
     public String getTestMessage() {

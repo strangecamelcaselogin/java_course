@@ -5,6 +5,7 @@ import ru.rsatu.core.UselessFactory;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
         TestInterface t = UselessFactory.getTest();
 
         String m = t.getTestMessage();
