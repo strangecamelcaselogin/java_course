@@ -6,5 +6,6 @@ import org.apache.logging.log4j.Logger;
 
 
 public interface AnnotationHandlerInterface {
-    public void process(Logger l, Method m);
+    void process(Object[] args);
+    void postprocess(Object result);
 }

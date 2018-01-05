@@ -3,7 +3,7 @@ package ru.rsatu.core;
 import ru.rsatu.core.annotations.Log;
 
 public class SimpleTest implements TestInterface {
-    public static String message = "Simple message";
+    private static String message = "Simple message";
 
     @Log()
     public String getTestMessage() {
