@@ -7,7 +7,9 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // получим "простой экземпляр"
-        TestInterface simpleT = UselessFactory.getTest("simple");
+        UselessFactory testFactory = new UselessFactory();
+
+        TestInterface simpleT = testFactory.makeSimpleTest();
 
         System.out.println("SimpleTest say WITH log: '" + simpleT.getTestMessage() + "'\n");
 
@@ -17,7 +19,7 @@ public class App {
         System.out.println("\n\n\n");
 
         // получим "лучший" экземпляр
-        TestInterface betterT = UselessFactory.getTest("better");
+        TestInterface betterT = testFactory.makeBetterTest();
 
         System.out.println("BetterTest say and WITHOUT log: '" + betterT.getTestMessage() + "'\n");
 
