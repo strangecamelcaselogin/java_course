@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<university>
+    <name>РГАТУ</name>
+
+    <faculty id="faculty1">
+        <name>ФРЕИ</name>
+        <departments>
+            <department id="department1">
+                <name>МПО-ЭВС</name>
+                <groups>
+                    <group id="group1">
+                        <name>ПИМ-17</name>
+                        <sudents>
+                            <student id="student1">
+                                <firstname>Иван</firstname>
+                                <surname>Селиверстов</surname>
+                                <subjects>
+                                    <subject>
+                                        <name>ТВП</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>МИИИ</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>ММАД</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>КК</name>
+                                        <mark></mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+
+                            <student id="student2">
+                                <firstname>Мария</firstname>
+                                <surname>Распопова</surname>
+                                <subjects>
+                                    <subject>
+                                        <name>ТВП</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>МИИИ</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>ММАД</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>КК</name>
+                                        <mark></mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+                        </sudents>
+                    </group>
+                </groups>
+            </department>
+
+            <department id="department2">
+                <name>???</name>
+                <groups>
+                    <group id="group2">
+                        <name>ИВС-17</name>
+                        <sudents>
+                            <student id="student3">
+                                <firstname>???</firstname>
+                                <surname>???</surname>
+                                <subjects>
+                                    <subject>
+                                        <name>name1</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>name2</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>name3</name>
+                                        <mark></mark>
+                                    </subject>
+                                    <subject>
+                                        <name>name4</name>
+                                        <mark></mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+                        </sudents>
+                    </group>
+                </groups>
+            </department>
+        </departments>
+    </faculty>
+</university>
