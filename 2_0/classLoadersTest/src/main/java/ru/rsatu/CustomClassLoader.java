@@ -12,8 +12,14 @@ public class CustomClassLoader extends ClassLoader {
 
         Class<?> c;
 
+    /*  TODO https://docs.oracle.com/javase/tutorial/security/userperm/index.html
+        TODO проверить, что загружаемый класс имеет доступ (к чему?)
+
+        TODO ЭЦП
+        */
+
         // если имя класса содержит текущий пакет и не содержит Interface, загрузим этот класс
-        if (canonicalClassName.contains(currentPackageName) && !canonicalClassName.contains("Interface")) {
+        if (canonicalClassName.startsWith(currentPackageName) && !canonicalClassName.contains("Interface")) {
             try {
                 byte[] bt = loadClassData(canonicalClassName);
                 c = defineClass(canonicalClassName, bt, 0, bt.length);  // превратим байты в реальный объект класса

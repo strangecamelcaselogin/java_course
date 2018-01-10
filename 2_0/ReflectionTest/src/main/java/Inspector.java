@@ -27,5 +27,9 @@ public class Inspector {
             System.out.println("\t" + m);
         }
 
+        // TODO все интерфейсы
+        // TODO все парент классы до Object
+        // TODO все параметры методов
+
     }
 }

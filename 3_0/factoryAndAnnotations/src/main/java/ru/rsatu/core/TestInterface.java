@@ -1,9 +1,7 @@
 package ru.rsatu.core;
 
 public interface TestInterface {
-    public static String message = "";
+    String getTestMessage();
 
-    public String getTestMessage();
-
-    public void printTextMessage();
+    void printTextMessage();
 }

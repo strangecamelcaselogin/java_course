@@ -24,6 +24,8 @@ public class UselessInvocationHandler implements InvocationHandler{
         // достанем оригинальный метод (прокси метод не имеет аннотаций)
         Method methodToCall = this.originalObject.getClass().getMethod(method.getName(), method.getParameterTypes());
 
+        Object result = null;
+
         // просмотрим все аннотации этого метода
         for (Annotation a: methodToCall.getAnnotations()) {
             Class<? extends Annotation> annotationType = a.annotationType();
@@ -35,13 +37,24 @@ public class UselessInvocationHandler implements InvocationHandler{
                     // получим имя обработчика, указанное в мета аннотации
                     String annotationHandlerName = annotationType.getAnnotation(metaAnnotation).handlerName();
 
-                    AnnotationHandler handler = (AnnotationHandler) Class.forName(annotationHandlerName).getConstructor().newInstance();
+                    AnnotationHandler handler = (AnnotationHandler) Class
+                            .forName(annotationHandlerName)
+                            .getDeclaredConstructor(Logger.class, Method.class)
+                            .newInstance(logger, methodToCall);
 
-                    handler.process(logger, methodToCall);  // вызовем соответствующий обработчик
+                    handler.process(args);  // вызовем соответствующий обработчик
+
+                    result = method.invoke(this.originalObject, args);  // наконец вызовем и сам метод
+
+                    handler.postprocess(result);
                 }
             }
         }
 
-        return method.invoke(this.originalObject, args);  // наконец вызовем и сам метод
+        if (result == null) {
+            result = method.invoke(this.originalObject, args);  // наконец вызовем и сам метод
+        }
+
+        return result;
     }
 }
