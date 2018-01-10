@@ -16,19 +16,19 @@
                                 <subjects>
                                     <subject>
                                         <name>ТВП</name>
-                                        <mark/>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
                                         <name>МИИИ</name>
-                                        <mark/>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
                                         <name>ММАД</name>
-                                        <mark/>
+                                        <mark>4</mark>
                                     </subject>
                                     <subject>
                                         <name>КК</name>
-                                        <mark/>
+                                        <mark>4</mark>
                                     </subject>
                                 </subjects>
                             </student>
@@ -39,19 +39,19 @@
                                 <subjects>
                                     <subject>
                                         <name>ТВП</name>
-                                        <mark/>
+                                        <mark>4</mark>
                                     </subject>
                                     <subject>
                                         <name>МИИИ</name>
-                                        <mark/>
+                                        <mark>4</mark>
                                     </subject>
                                     <subject>
                                         <name>ММАД</name>
-                                        <mark/>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
                                         <name>КК</name>
-                                        <mark/>
+                                        <mark>4</mark>
                                     </subject>
                                 </subjects>
                             </student>
@@ -67,24 +67,24 @@
                         <name>ИВС-17</name>
                         <sudents>
                             <student id="student3">
-                                <firstname>???</firstname>
-                                <surname>???</surname>
+                                <firstname>Андрей</firstname>
+                                <surname>Андрющенко</surname>
                                 <subjects>
                                     <subject>
-                                        <name>name1</name>
-                                        <mark/>
+                                        <name>Сети</name>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <name>name2</name>
-                                        <mark/>
+                                        <name>MA</name>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <name>name3</name>
-                                        <mark/>
+                                        <name>АиГ</name>
+                                        <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <name>name4</name>
-                                        <mark/>
+                                        <name>Философия</name>
+                                        <mark>5</mark>
                                     </subject>
                                 </subjects>
                             </student>
