@@ -15,60 +15,76 @@ public class SaxParser {
 
             DefaultHandler handler = new DefaultHandler() {
 
-                boolean bfname = false;
-                boolean blname = false;
-                boolean bnname = false;
-                boolean bsalary = false;
+                boolean bdepartament = false;
+                boolean bgroup = false;
+                boolean bsurname = false;
+                boolean bsubject = false;
+                boolean bname_subject = false;
+                boolean bmark_subject = false;
 
                 public void startElement(String uri, String localName,String qName,
                                          Attributes attributes) throws SAXException {
 
 
-                    if (qName.equalsIgnoreCase("FIRSTNAME")) {
-                        bfname = true;
+                    if (qName.equalsIgnoreCase("Departamnet_name")) {
+                        bdepartament = true;
                     }
 
-                    if (qName.equalsIgnoreCase("LASTNAME")) {
-                        blname = true;
+                    if (qName.equalsIgnoreCase("Group_name")) {
+                        bgroup = true;
                     }
 
-                    if (qName.equalsIgnoreCase("NICKNAME")) {
-                        bnname = true;
+                    if (qName.equalsIgnoreCase("Surname")) {
+                        bsurname = true;
                     }
 
-                    if (qName.equalsIgnoreCase("SALARY")) {
-                        bsalary = true;
+                    if (qName.equalsIgnoreCase("Subject")) {
+                        bsubject = true;
+                    }
+
+                    if (qName.equalsIgnoreCase("Name") && bsubject) {
+                        bname_subject = true;
+                    }
+
+                    if (qName.equalsIgnoreCase("Mark") && bsubject) {
+                        bmark_subject = true;
                     }
 
                 }
 
                 public void characters(char ch[], int start, int length) throws SAXException {
 
-                    if (bfname) {
-                        System.out.println("First Name : " + new String(ch, start, length));
-                        bfname = false;
+                    if (bdepartament) {
+                        System.out.println("Departamnet : " + new String(ch, start, length));
+                        bdepartament = false;
                     }
 
-                    if (blname) {
-                        System.out.println("Last Name : " + new String(ch, start, length));
-                        blname = false;
+                    if (bgroup) {
+                        System.out.println("Group : " + new String(ch, start, length));
+                        bgroup = false;
                     }
 
-                    if (bnname) {
-                        System.out.println("Nick Name : " + new String(ch, start, length));
-                        bnname = false;
+                    if (bsurname) {
+                        System.out.println("Surname : " + new String(ch, start, length));
+                        bsurname = false;
                     }
 
-                    if (bsalary) {
-                        System.out.println("Salary : " + new String(ch, start, length));
-                        bsalary = false;
+                    if (bname_subject) {
+                        System.out.println("Subject : " + new String(ch, start, length));
+                        bname_subject = false;
+                    }
+
+                    if (bmark_subject) {
+                        System.out.println("Mark : " + new String(ch, start, length));
+                        bmark_subject = false;
+                        bsubject = false;
                     }
 
                 }
 
             };
 
-            saxParser.parse("test.xml", handler);
+            saxParser.parse("university.xml", handler);
 
         } catch (Exception e) {
             e.printStackTrace();

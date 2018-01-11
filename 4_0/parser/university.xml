@@ -6,10 +6,10 @@
         <name>ФРЕИ</name>
         <departments>
             <department id="department1">
-                <name>МПО-ЭВС</name>
+                <departament_name>МПО-ЭВС</departament_name>
                 <groups>
                     <group id="group1">
-                        <name>ПИМ-17</name>
+                        <group_name>ПИМ-17</group_name>
                         <sudents>
                             <student id="student1">
                                 <firstname>Иван</firstname>

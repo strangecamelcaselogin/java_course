@@ -1,0 +1,96 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://tempuri.org/PurchaseOrderSchema.xsd"
+            targetNamespace="http://tempuri.org/PurchaseOrderSchema.xsd"
+            elementFormDefault="qualified">
+    <!-- университет -->
+    <xsd:element name="university">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="name" type="xsd:string"/>
+
+                <!-- Факультет -->
+                <xsd:element name="faculty">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="name" type="xsd:string"/>
+
+                            <!-- кафедры -->
+                            <xsd:element name="departments">
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <!-- кафедра -->
+                                        <xsd:element name="departament">
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                    <xsd:element name="departament_name" type="xsd:string"/>
+
+                                                    <!-- группы -->
+                                                    <xsd:element name="groups">
+                                                        <xsd:complexType>
+                                                            <xsd:sequence>
+
+                                                                <!-- группа -->
+                                                                <xsd:element name="group">
+                                                                    <xsd:complexType>
+                                                                        <xsd:sequence>
+
+                                                                            <xsd:element name="group_name" type="xsd:string"/>
+                                                                            <xsd:element name="students">
+                                                                                <xsd:complexType>
+                                                                                    <xsd:sequence>
+
+                                                                                        <!-- студент -->
+                                                                                        <xsd:element name="student">
+                                                                                            <xsd:complexType>
+                                                                                                <xsd:sequence>
+
+                                                                                                    <xsd:element name="firstname" type="xsd:string"/>
+                                                                                                    <xsd:element name="surname" type="xsd:string"/>
+                                                                                                    <!-- предметы -->
+                                                                                                    <xsd:element name="subjects">
+                                                                                                        <xsd:complexType>
+                                                                                                            <xsd:sequence>
+
+                                                                                                                <!-- предмет -->
+                                                                                                                <xsd:element name="subject">
+                                                                                                                    <xsd:complexType>
+                                                                                                                        <xsd:sequence>
+                                                                                                                            <xsd:element name="name" type="xsd:string"/>
+                                                                                                                            <xsd:element name="mark" type="xsd:integer"/>
+                                                                                                                        </xsd:sequence>
+                                                                                                                    </xsd:complexType>
+                                                                                                                </xsd:element>
+                                                                                                            </xsd:sequence>
+                                                                                                        </xsd:complexType>
+                                                                                                    </xsd:element>
+
+                                                                                                </xsd:sequence>
+                                                                                            </xsd:complexType>
+                                                                                        </xsd:element>
+
+                                                                                    </xsd:sequence>
+                                                                                </xsd:complexType>
+                                                                            </xsd:element>
+
+                                                                        </xsd:sequence>
+                                                                    </xsd:complexType>
+                                                                </xsd:element>
+
+                                                            </xsd:sequence>
+                                                        </xsd:complexType>
+                                                    </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="id" type="xsd:string"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>
