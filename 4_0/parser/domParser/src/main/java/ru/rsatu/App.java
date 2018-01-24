@@ -1,4 +1,4 @@
-package DOMReader;
+package ru.rsatu;
 
 import java.io.IOException;
 import java.io.File;
@@ -6,6 +6,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -14,6 +15,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
 
 public class App {
 
@@ -26,26 +28,14 @@ public class App {
 
             // Получаем корневой элемент
             Node root = document.getDocumentElement();
+            getRecourseNodes(root);
 
-            System.out.println("List of foods:");
+            System.out.println("List of students:");
             System.out.println();
             // Просматриваем все подэлементы корневого - т.е. книги
+
             NodeList foods = root.getChildNodes();
-            for (int i = 0; i < foods.getLength(); i++) {
-                Node food = foods.item(i);
-                // Если нода не текст, то это книга - заходим внутрь
-                if (food.getNodeType() != Node.TEXT_NODE) {
-                    NodeList foodProps = food.getChildNodes();
-                    for(int j = 0; j < foodProps.getLength(); j++) {
-                        Node foodProp = foodProps.item(j);
-                        // Если нода не текст, то это один из параметров книги - печатаем
-                        if (foodProp.getNodeType() != Node.TEXT_NODE) {
-                            System.out.println(foodProp.getNodeName() + ":" + foodProp.getChildNodes().item(0).getTextContent());
-                        }
-                    }
-                    System.out.println("===========>>>>");
-                }
-            }
+
 
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
@@ -69,4 +59,46 @@ public class App {
             tfe.printStackTrace();
         }
     }
+
+    private static void getRecourseNodes(Node node) {
+
+        if (node.getNodeName().equals("#text"))
+            return;
+        //имя тега
+        System.out.println(node.getNodeName());
+        //атрибуты тега
+        NamedNodeMap nodeMap = node.getAttributes();
+
+        if (nodeMap != null) {
+            for (int i = 0; i < nodeMap.getLength(); i ++){
+                System.out.println("Attribute " + nodeMap.item(i).getNodeName()
+                        + " = " + nodeMap.item(i).getNodeValue());
+            }
+        }
+
+        //содержимое элемента
+        if (getElementContent(node) != null && !(getElementContent(node).equals("")))
+            System.out.println("Text content = '" + getElementContent(node)+"'\n");
+
+        NodeList nodeList = node.getChildNodes();
+
+        //рекурсивно вызываем метод для каждого из подэлементов в переданном узле
+        for (int i = 0; i < nodeList.getLength(); i++){
+            getRecourseNodes(nodeList.item(i));
+        }
+    }
+
+    private static String getElementContent(Node node) {
+
+        Node contentNode = node.getFirstChild();
+        if (contentNode != null)
+
+            if (contentNode.getNodeName().equals("#text")) {
+                String value = contentNode.getNodeValue();
+                if (value != null)
+                    return value.trim();
+            }
+        return null;
+    }
+    //System.out.println(foodProp.getNodeName() + ":" + foodProp.getChildNodes().item(0).getTextContent());
 }

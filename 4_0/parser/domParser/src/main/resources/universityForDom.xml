@@ -1,32 +1,34 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><university id="university">
-    <universityName>РГАТУ</universityName>
+<?xml version="1.0" encoding="utf-8" ?>
+<university>
+    <name>РГАТУ</name>
+
     <faculty id="faculty1">
-        <facultyName>ФРЕИ</facultyName>
+        <name>ФРЕИ</name>
         <departments>
             <department id="department1">
-                <departmentName>МПО-ЭВС</departmentName>
+                <departament_name>МПО-ЭВС</departament_name>
                 <groups>
                     <group id="group1">
-                        <groupName>ПИМ-17</groupName>
+                        <group_name>ПИМ-17</group_name>
                         <sudents>
                             <student id="student1">
                                 <firstname>Иван</firstname>
                                 <surname>Селиверстов</surname>
                                 <subjects>
                                     <subject>
-                                        <subjectName>ТВП</subjectName>
+                                        <name>ТВП</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>МИИИ</subjectName>
+                                        <name>МИИИ</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>ММАД</subjectName>
+                                        <name>ММАД</name>
                                         <mark>4</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>КК</subjectName>
+                                        <name>КК</name>
                                         <mark>4</mark>
                                     </subject>
                                 </subjects>
@@ -37,19 +39,19 @@
                                 <surname>Распопова</surname>
                                 <subjects>
                                     <subject>
-                                        <subjectName>ТВП</subjectName>
+                                        <name>ТВП</name>
                                         <mark>4</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>МИИИ</subjectName>
+                                        <name>МИИИ</name>
                                         <mark>4</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>ММАД</subjectName>
+                                        <name>ММАД</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>КК</subjectName>
+                                        <name>КК</name>
                                         <mark>4</mark>
                                     </subject>
                                 </subjects>
@@ -60,29 +62,29 @@
             </department>
 
             <department id="department2">
-                <departamentName>???</departamentName>
+                <name>???</name>
                 <groups>
                     <group id="group2">
-                        <groupName>ИВС-17</groupName>
+                        <name>ИВС-17</name>
                         <sudents>
                             <student id="student3">
                                 <firstname>Андрей</firstname>
                                 <surname>Андрющенко</surname>
                                 <subjects>
                                     <subject>
-                                        <subjectName>Сети</subjectName>
+                                        <name>Сети</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>MA</subjectName>
+                                        <name>MA</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>АиГ</subjectName>
+                                        <name>АиГ</name>
                                         <mark>5</mark>
                                     </subject>
                                     <subject>
-                                        <subjectName>Философия</subjectName>
+                                        <name>Философия</name>
                                         <mark>5</mark>
                                     </subject>
                                 </subjects>

@@ -1,3 +1,5 @@
+package ru.rsatu;
+
 public class Student {
     private int departament_id;
     private int group_id;
