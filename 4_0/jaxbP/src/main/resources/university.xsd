@@ -46,7 +46,7 @@
   <xs:element name="groups">
     <xs:complexType>
       <xs:sequence>
-        <xs:element ref="group"/>
+        <xs:element ref="group"  maxOccurs="unbounded" minOccurs="0"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
