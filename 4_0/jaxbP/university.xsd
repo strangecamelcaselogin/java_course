@@ -1,115 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="university" type="universityType"/>
-  <xs:complexType name="studentType">
-    <xs:sequence>
-      <xs:element name="firstname">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="Иван"/>
-            <xs:enumeration value="Мария"/>
-            <xs:enumeration value="Андрей"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element name="surname">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="Селиверстов"/>
-            <xs:enumeration value="Распопова"/>
-            <xs:enumeration value="Андрющенко"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element type="subjectsType" name="subjects"/>
-    </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
-  </xs:complexType>
-  <xs:complexType name="groupType">
-    <xs:sequence>
-      <xs:element name="groupName">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="ПИМ-17"/>
-            <xs:enumeration value="ИВС-17"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element type="sudentsType" name="sudents"/>
-    </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
-  </xs:complexType>
-  <xs:complexType name="groupsType">
-    <xs:sequence>
-      <xs:element type="groupType" name="group"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="universityType">
-    <xs:sequence>
-      <xs:element type="xs:string" name="universityName"/>
-      <xs:element type="facultyType" name="faculty"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="subjectsType">
-    <xs:sequence>
-      <xs:element type="subjectType" name="subject" maxOccurs="unbounded" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="departmentsType">
-    <xs:sequence>
-      <xs:element type="departmentType" name="department" maxOccurs="unbounded" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="facultyType">
-    <xs:sequence>
-      <xs:element type="xs:string" name="facultyName"/>
-      <xs:element type="departmentsType" name="departments"/>
-    </xs:sequence>
-    <xs:attribute type="xs:string" name="id"/>
-  </xs:complexType>
-  <xs:complexType name="departmentType">
-    <xs:sequence>
-      <xs:element name="departamentName">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="МПО-ЭВС"/>
-            <xs:enumeration value="???"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element type="groupsType" name="groups"/>
-    </xs:sequence>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
-  </xs:complexType>
-  <xs:complexType name="subjectType">
-    <xs:sequence>
-      <xs:element name="subjectName">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="ТВП"/>
-            <xs:enumeration value="МИИИ"/>
-            <xs:enumeration value="ММАД"/>
-            <xs:enumeration value="КК"/>
-            <xs:enumeration value="Сети"/>
-            <xs:enumeration value="MA"/>
-            <xs:enumeration value="АиГ"/>
-            <xs:enumeration value="Философия"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-      <xs:element name="mark">
-        <xs:simpleType>
-          <xs:restriction base="xs:string">
-            <xs:enumeration value="5"/>
-            <xs:enumeration value="4"/>
-          </xs:restriction>
-        </xs:simpleType>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="sudentsType">
-    <xs:sequence>
-      <xs:element type="studentType" name="student" maxOccurs="unbounded" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
+
+  <xs:element name="university">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="universityName"/>
+        <xs:element ref="faculty"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="faculty">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="facultyName"/>
+        <xs:element ref="departments"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="departments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="department" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="department">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="departmentName">
+          <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="groups" />
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="groups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="group"  maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="group">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="groupName">
+          <xs:simpleType>
+            <xs:restriction base="xs:string"/>
+          </xs:simpleType>
+        </xs:element>
+        <xs:element ref="students"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="students">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="student" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+  <xs:element name="student">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="firstname" type="xs:string"/>
+        <xs:element name="surname" type="xs:string"/>
+        <xs:element ref="subjects"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="id" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="subjects">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="subject" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="subject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="subjectName" type="xs:string"/>
+        <xs:element name="mark" type="xs:string"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
 </xs:schema>

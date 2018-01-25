@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><university id="university">
-    <universityName>МГУ</universityName>
+<?xml version="1.0" encoding="utf-8" ?>
+<university id="university">
+    <universityName>РГАТУ</universityName>
     <faculty id="faculty1">
         <facultyName>ФРЕИ</facultyName>
         <departments>

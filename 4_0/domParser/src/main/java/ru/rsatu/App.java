@@ -2,6 +2,7 @@ package ru.rsatu;
 
 import java.io.IOException;
 import java.io.File;
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,6 +16,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -26,9 +30,17 @@ public class App {
     public static void main(String[] args) throws XPathExpressionException{
         try {
             // Создается построитель документа
+
+            String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
+            SchemaFactory factory = SchemaFactory.newInstance(language);
+            Schema schema = factory.newSchema(new File("university.xsd"));
+
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             // Создается дерево DOM документа из файла
             Document document = documentBuilder.parse("university.xml");
+
+            Validator validator = schema.newValidator();
+            validator.validate(new DOMSource(document));
 
             // Получаем корневой элемент
             Node root = document.getDocumentElement();
@@ -82,8 +94,12 @@ public class App {
         }
 
         //содержимое элемента
-        if (getElementContent(node) != null && !(getElementContent(node).equals("")))
-            System.out.println("Text content = '" + getElementContent(node)+"'\n");
+        try {
+            if (getElementContent(node) != null && !(getElementContent(node).equals("")))
+                System.out.println("Text content = '" + getElementContent(node) + "'\n");
+        } catch (NullPointerException e) {
+            System.out.println("No content");
+        }
 
         NodeList nodeList = node.getChildNodes();
 
@@ -96,21 +112,23 @@ public class App {
     private static String getElementContent(Node node) {
 
         Node contentNode = node.getFirstChild();
-        System.out.println("getElementContent: " + node.getNodeName());
         if (contentNode != null)
 
             if (contentNode.getNodeName().equals("#text")) {
                 String value = contentNode.getNodeValue();
-                if (value.equals("Философия")){
-                    contentNode.setTextContent("Логика и философия");
-                }
-
-                if (value.equals("???")){
-                    contentNode.setTextContent("ИВМ-17");
-                }
-
                 if (value != null)
                     return value.trim();
+                try {
+                    if (value.equals("Философия")) {
+                        contentNode.setTextContent("Логика и философия");
+                    }
+
+                    if (value.equals("???")) {
+                        contentNode.setTextContent("ИВМ-17");
+                    }
+                } catch (NullPointerException e){
+                    System.out.println("Maybe its NullPointer");
+                }
             }
         return null;
     }
