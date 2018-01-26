@@ -1,3 +1,0 @@
-soaphelloworld> wsgen -keep -cp target/classes -s src/main/java ru.rsatu.mysoap.ws.HelloWorldImpl
-
-soaphelloworld> wsgen -keep -cp target/classes -s src/main/java -d src/main/resources/ ru.rsatu.mysoap.ws.HelloWorldImpl -wsdl
