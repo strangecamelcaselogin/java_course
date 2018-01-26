@@ -42,7 +42,7 @@
                 <version>3.0.2</version>
                 <configuration>
                     <!-- Папка в которую запихиваем джары -->
-                    <outputDirectory>target</outputDirectory>
+                    <outputDirectory>./</outputDirectory>
                     <overWriteReleases>false</overWriteReleases>
                     <overWriteSnapshots>false</overWriteSnapshots>
                     <overWriteIfNewer>true</overWriteIfNewer>
@@ -56,6 +56,27 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>projects/my_first_docker</repository>
+                    <buildArgs>
+                        <JAR_FILE>masterApp-1.0.jar</JAR_FILE>
+                        <JAR_FILE>slave-1.0.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
             </plugin>
         </plugins>
     </build>

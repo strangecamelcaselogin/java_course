@@ -14,11 +14,94 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <!-- Указываем что должно быть в манифесте-->
+                        <manifest>
+                            <mainClass>ru.rsatu.App</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>./</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <goals>
+                            <goal>build</goal>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <repository>/home/jane/.m2/repository/ru/rsatu/java_course/classLoadersTest</repository>
+                    <buildArgs>
+                        <JAR_FILE>target/classLoadersTest-1.0.jar</JAR_FILE>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7</version>
+                <dependencies>
+                    <dependency><!-- add support for ssh/scp -->
+                        <groupId>org.apache.maven.wagon</groupId>
+                        <artifactId>wagon-ssh</artifactId>
+                        <version>2.12</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.12</version>
+            </extension>
+        </extensions>
+
     </build>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>classLoadersTest</id>
+            <name>TestWebApp Applications Repository Internal</name>
+            <url>/home/jane/.m2/repository/ru/rsatu/java_course/classLoadersTest</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>classLoadersTest</id>
+            <name>TestWebApp Applications Repository Internal</name>
+            <url>/home/jane/.m2/repository/ru/rsatu/java_course/classLoadersTest</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
 
     <groupId>ru.rsatu.java_course</groupId>
     <artifactId>classLoadersTest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
 </project>
