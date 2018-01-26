@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<university id="university">
+    <universityName>РГАТУ</universityName>
+    <faculty id="faculty1">
+        <facultyName>ФРЕИ</facultyName>
+        <departments>
+            <department id="department1">
+                <departmentName>МПО-ЭВС</departmentName>
+                <groups>
+                    <group id="group1">
+                        <groupName>ПИМ-17</groupName>
+                        <students>
+                            <student id="student1">
+                                <firstname>Иван</firstname>
+                                <surname>Селиверстов</surname>
+                                <subjects>
+                                    <subject>
+                                        <subjectName>ТВП</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>МИИИ</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>ММАД</subjectName>
+                                        <mark>4</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>КК</subjectName>
+                                        <mark>4</mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+
+                            <student id="student2">
+                                <firstname>Мария</firstname>
+                                <surname>Распопова</surname>
+                                <subjects>
+                                    <subject>
+                                        <subjectName>ТВП</subjectName>
+                                        <mark>4</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>МИИИ</subjectName>
+                                        <mark>4</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>ММАД</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>КК</subjectName>
+                                        <mark>4</mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+                        </students>
+                    </group>
+                </groups>
+            </department>
+
+            <department id="department2">
+                <departmentName>???</departmentName>
+                <groups>
+                    <group id="group2">
+                        <groupName>ИВС-17</groupName>
+                        <students>
+                            <student id="student3">
+                                <firstname>Андрей</firstname>
+                                <surname>Андрющенко</surname>
+                                <subjects>
+                                    <subject>
+                                        <subjectName>Сети</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>MA</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>АиГ</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                    <subject>
+                                        <subjectName>Философия</subjectName>
+                                        <mark>5</mark>
+                                    </subject>
+                                </subjects>
+                            </student>
+                        </students>
+                    </group>
+                </groups>
+            </department>
+        </departments>
+    </faculty>
+</university>
