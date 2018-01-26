@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Subjects {
 
     @XmlElement(nillable = true)
-    protected List<Object> subject;
+    protected List<Subject> subject;
 
     /**
      * Gets the value of the subject property.
@@ -59,9 +59,9 @@ public class Subjects {
      * 
      * 
      */
-    public List<Object> getSubject() {
+    public List<Subject> getSubject() {
         if (subject == null) {
-            subject = new ArrayList<Object>();
+            subject = new ArrayList<Subject>();
         }
         return this.subject;
     }
