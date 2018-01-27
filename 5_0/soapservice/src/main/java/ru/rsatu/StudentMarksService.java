@@ -13,47 +13,59 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import ru.rsatu.Subjects;
-import ru.rsatu.Subject;
 
 public class StudentMarksService {
     private Document document;
 
-    public StudentMarksService() throws ParserConfigurationException, IOException, SAXException {
-        // Создается построитель документа
-        DocumentBuilder documentBuilder = DocumentBuilderFactory
-                .newInstance()
-                .newDocumentBuilder();
-        // Создается дерево DOM документа из файла
+    public StudentMarksService() {
+        try {
+            // Создается построитель документа
+            DocumentBuilder documentBuilder = DocumentBuilderFactory
+                    .newInstance()
+                    .newDocumentBuilder();
 
-        URL documentURL = this.getClass().getClassLoader().getResource("university.xml");
+            URL documentURL = this.getClass().getClassLoader().getResource("university.xml");
 
-        if (documentURL == null) {
-            throw new RuntimeException("university.xml Not Found in Resources");
+            if (documentURL == null) {
+                throw new FileNotFoundException("university.xml Not Found in Resources directory");
+            }
+
+            // Создается дерево DOM документа из файла
+            this.document = documentBuilder.parse(documentURL.toString());
+
+        } catch (IOException | SAXException | ParserConfigurationException e) {
+            throw new ParsingException("Can not initialize StudentMarksService", e);
         }
-
-        this.document = documentBuilder.parse(documentURL.toString());
     }
 
-    public Subjects getMarks(String groupName, String firstName, String lastName) {
+    public Subjects getMarks(String university,
+                             String faculty,
+                             String groupName,
+                             String firstName,
+                             String lastName) {
+
         XPath xPath = XPathFactory.newInstance().newXPath();
 
         try {
             NodeList subjects = (NodeList) xPath.
-                    compile(String.format("//university[universityName='РГАТУ']" +
-                            "/faculty[facultyName='ФРЕИ']" +
+                    compile(String.format("//university[universityName='%s']" +
+                            "/faculty[facultyName='%s']" +
                             "/departments" +
                             "/department" +
                             "/groups" +
                             "/group[groupName='%s']" +
                             "/students" +
                             "/student[firstname='%s' and surname='%s']" +
-                            "/subjects", groupName, firstName, lastName))
+                            "/subjects",
+                            university.toLowerCase(),
+                            faculty.toLowerCase(),
+                            groupName.toLowerCase(),
+                            firstName.toLowerCase(),
+                            lastName.toLowerCase()))
+
                     .evaluate(document, XPathConstants.NODE);
 
             if (subjects != null) {
@@ -68,11 +80,9 @@ public class StudentMarksService {
                         for (int j = 0; j < subjectChilds.getLength(); j ++) {
                             Node t = subjectChilds.item(j);
                             if (t.getNodeName().equals("subjectName")) {
-                                System.out.println(t.getFirstChild().getNodeValue());
                                 xmlSubject.setSubjectName(t.getFirstChild().getNodeValue());
                             }
                             if (t.getNodeName().equals("mark")) {
-                                System.out.println(t.getFirstChild().getNodeValue());
                                 xmlSubject.setMark(t.getFirstChild().getNodeValue());
                             }
                         }
@@ -89,6 +99,7 @@ public class StudentMarksService {
             }
         }
         catch (XPathExpressionException e) {
+            System.out.println("Ошибка XPath\n" + e.toString());
             return null;
         }
     }

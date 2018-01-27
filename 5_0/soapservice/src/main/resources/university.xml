@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <university id="university">
-    <universityName>РГАТУ</universityName>
+    <universityName>ргату</universityName>
     <faculty id="faculty1">
-        <facultyName>ФРЕИ</facultyName>
+        <facultyName>фрэи</facultyName>
         <departments>
             <department id="department1">
-                <departmentName>МПО-ЭВС</departmentName>
+                <departmentName>мпо-эвс</departmentName>
                 <groups>
                     <group id="group1">
-                        <groupName>ПИМ-17</groupName>
+                        <groupName>пим-17</groupName>
                         <students>
                             <student id="student1">
-                                <firstname>Иван</firstname>
-                                <surname>Селиверстов</surname>
+                                <firstname>иван</firstname>
+                                <surname>селиверстов</surname>
                                 <subjects>
                                     <subject>
                                         <subjectName>ТВП</subjectName>
@@ -34,8 +34,8 @@
                             </student>
 
                             <student id="student2">
-                                <firstname>Мария</firstname>
-                                <surname>Распопова</surname>
+                                <firstname>мария</firstname>
+                                <surname>распопова</surname>
                                 <subjects>
                                     <subject>
                                         <subjectName>ТВП</subjectName>
@@ -64,11 +64,11 @@
                 <departmentName>???</departmentName>
                 <groups>
                     <group id="group2">
-                        <groupName>ИВС-17</groupName>
+                        <groupName>ивс-17</groupName>
                         <students>
                             <student id="student3">
-                                <firstname>Андрей</firstname>
-                                <surname>Андрющенко</surname>
+                                <firstname>андрей</firstname>
+                                <surname>андрющенко</surname>
                                 <subjects>
                                     <subject>
                                         <subjectName>Сети</subjectName>
