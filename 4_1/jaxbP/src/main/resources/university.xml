@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<university id="university">
+<university xmlns="rsatu.ru">
     <universityName>РГАТУ</universityName>
     <faculty id="faculty1">
         <facultyName>ФРЕИ</facultyName>

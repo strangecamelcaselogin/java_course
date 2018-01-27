@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+          xmlns:rur="rsatu.ru"
+          targetNamespace="rsatu.ru"
+          attributeFormDefault="unqualified"
+          elementFormDefault="qualified"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:complexType name="university">
+  <xs:sequence>
+    <xs:element type="xs:string" name="universityName"/>
+    <xs:element ref="rur:faculty"/>
+  </xs:sequence>
+  <xs:attribute type="xs:string" name="id" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="faculty">
+  <xs:sequence>
+    <xs:element type="xs:string" name="facultyName"/>
+    <xs:element ref="rur:departments"/>
+  </xs:sequence>
+  <xs:attribute type="xs:string" name="id"/>
+</xs:complexType>
+
+<xs:complexType name="departments">
+  <xs:sequence>
+    <xs:element ref="rur:department" maxOccurs="unbounded" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="department">
+  <xs:sequence>
+    <xs:element name="departmentName">
+      <xs:simpleType>
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+    </xs:element>
+    <xs:element ref="rur:groups" />
+  </xs:sequence>
+  <xs:attribute type="xs:string" name="id" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="groups">
+  <xs:sequence>
+    <xs:element ref="rur:group"  maxOccurs="unbounded" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="group">
+  <xs:sequence>
+    <xs:element name="groupName">
+      <xs:simpleType>
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+    </xs:element>
+    <xs:element ref="rur:students"/>
+  </xs:sequence>
+  <xs:attribute type="xs:string" name="id" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="students">
+  <xs:sequence>
+    <xs:element ref="rur:student" maxOccurs="unbounded" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="student">
+  <xs:sequence>
+    <xs:element name="firstname" type="xs:string"/>
+    <xs:element name="surname" type="xs:string"/>
+    <xs:element ref="rur:subjects"/>
+  </xs:sequence>
+  <xs:attribute type="xs:string" name="id" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="subjects">
+  <xs:sequence>
+    <xs:element ref="rur:subject" maxOccurs="unbounded" minOccurs="0"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="subject">
+  <xs:sequence>
+    <xs:element name="subjectName" type="xs:string"/>
+    <xs:element name="mark" type="xs:string"/>
+  </xs:sequence>
+</xs:complexType>
+
+<xs:element name="university" type="rur:university" xmlns:rur="rsatu.ru"/>
+<xs:element name="faculty" type="rur:faculty"/>
+<xs:element name="departments" type="rur:departments"/>
+<xs:element name="department" type="rur:department"/>
+<xs:element name="groups" type="rur:groups"/>
+<xs:element name="group" type="rur:group"/>
+<xs:element name="students" type="rur:students"/>
+<xs:element name="student" type="rur:student"/>
+<xs:element name="subjects" type="rur:subjects"/>
+<xs:element name="subject" type="rur:subject"/>
+</xs:schema>
