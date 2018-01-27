@@ -87,7 +87,7 @@ public class StudentMarksService {
                             }
                         }
 
-                        xmlSubjects.getSubject().add(xmlSubject);
+                        xmlSubjects.getSubjects().add(xmlSubject);
                     }
                 }
 

@@ -8,8 +8,6 @@ import java.util.List;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import ru.rsatu.ws.StudentMarks;
-import ru.rsatu.ws.Subjects;
-import ru.rsatu.ws.Subject;
 
 public class StudentMarksClient {
 
@@ -38,7 +36,7 @@ public class StudentMarksClient {
 
             Subjects response = studentMarksService.getMarksByGroupAndName(groupName, firstName, lastName);
 
-            List<Subject> subjectList = response.getSubject();
+            List<Subject> subjectList = response.getSubjects();
 
             if (subjectList.size() == 0) {
                 System.out.println("Такого студента не существует");
