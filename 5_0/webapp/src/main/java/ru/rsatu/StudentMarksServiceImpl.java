@@ -30,8 +30,6 @@ public class StudentMarksServiceImpl implements StudentMarksService {
     }
 
     public StudentMarksServiceImpl() {
-        System.out.println("Я тут");
-
         try {
             // Создается построитель документа
             DocumentBuilder documentBuilder = DocumentBuilderFactory

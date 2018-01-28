@@ -9,7 +9,7 @@ import javax.jws.soap.SOAPBinding;
 
 
 @WebService
-//@Stateless
+@Stateless
 //@SOAPBinding(style=SOAPBinding.Style.RPC)
 public class StudentMarks {
 
@@ -26,9 +26,7 @@ public class StudentMarks {
             System.out.println("Инъекция не сработала");
         }
         else {
-            Subjects result = studentMarksService.getMarks("РГАТУ", "ФРЭИ", group, firstName, lastName);
-
-            return result;
+            return studentMarksService.getMarks("РГАТУ", "ФРЭИ", group, firstName, lastName);
         }
 
         return new Subjects();
